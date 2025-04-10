@@ -65,9 +65,12 @@ Install and Mount NFS
 6. Schedule Script with Cron (Every 5 Minutes)
 ```bash
 - crontab -e
-Add this line:
-- */5 * * * * /usr/local/bin/ftphousekeep.sh  ✅ This runs the script every 5 minutes automatically.
 ```
+Add this line:
+```bash
+- */5 * * * * /usr/local/bin/ftphousekeep.sh
+```
+✅ This runs the script every 5 minutes automatically.
 
 7. Test the SetupCreate a file for testing:
 ```bash
