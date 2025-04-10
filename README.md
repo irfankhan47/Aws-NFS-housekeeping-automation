@@ -34,10 +34,10 @@ Step-by-Step Setup
 Install and Configure NFS
 - sudo apt update
 - sudo apt install nfs-kernel-server -y
-Create Shared Folders
+  # Create Shared Folders
 - sudo mkdir -p /nfs/datacontrol
 - sudo mkdir -p /nfs/archive
-- sudo chmod -R 777 /nfsExport the Foldersecho "/nfs *(rw,sync,no_subtree_check,no_root_squash)" | sudo tee -a /etc/exports
+- sudo chmod -R 777 /nfs Export the Folders echo "/nfs *(rw,sync,no_subtree_check,no_root_squash)" | sudo tee -a /etc/exports
 - sudo exportfs -a
 - sudo systemctl restart nfs-kernel-server
 
