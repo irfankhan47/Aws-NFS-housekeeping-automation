@@ -94,7 +94,8 @@ tail -n 1 /var/log/ftphousekeep.log
 
 ✅ Shows the latest log entry.
 ✅ OutcomeThis simulation demonstrates how to offload system-intensive housekeeping from critical servers by using shared storage and remote automation — just like in production environments.
-👤 Author
-Irfan KhanDevOps & Cloud Engineer
-(Trained Fresher)
-GitHub: @irfankhan47
+
+👤 Author<br>
+Irfan KhanDevOps & Cloud Engineer<br>
+(Trained Fresher)<br>
+GitHub: @irfankhan47<br>
