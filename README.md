@@ -8,7 +8,8 @@ Shared data is hosted on the NFS server.
 The housekeeping script runs on the client server and moves old files to an archive directory.
 The script is scheduled using cron to run every 5 minutes.
 
-🛠️ Tools & TechnologiesAWS EC2 (Ubuntu 22.04)
+# 🛠️ Tools & Technologies
+AWS EC2 (Ubuntu 22.04)
 NFS (Network File System)
 Bash Shell Scripting
 Crontab for automation
