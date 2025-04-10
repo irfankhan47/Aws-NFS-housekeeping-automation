@@ -22,12 +22,13 @@ The script is scheduled using cron to run every 5 minutes.
 Step-by-Step Setup
 1. Launch Two EC2 Instances Ubuntu 22.04 EC2 instances:
 
-One as the nfs-server
-One as the client-server
-Use the same security group for both.
+- One as the nfs-server
+- One as the client-server
+- Use the same security group for both.
 
-2. Update Security Group Inbound RulesAllow SSH: Port 22
-Allow NFS: Port 2049 (Custom TCP)
+2. Update Security Group Inbound Rules
+- Allow SSH: Port 22
+- Allow NFS: Port 2049 (Custom TCP)
 
 4. On nfs-server: Install and Configure NFSsudo apt update
 
