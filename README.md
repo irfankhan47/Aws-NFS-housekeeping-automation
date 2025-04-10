@@ -9,10 +9,10 @@ The housekeeping script runs on the client server and moves old files to an arch
 The script is scheduled using cron to run every 5 minutes.
 
 # 🛠️ Tools & Technologies
-AWS EC2 (Ubuntu 22.04)
-NFS (Network File System)
-Bash Shell Scripting
-Crontab for automation
+. AWS EC2 (Ubuntu 22.04)
+. NFS (Network File System)
+. Bash Shell Scripting
+. Crontab for automation
 
 📦 Folder Structureproject-root/
 - ├── ftphousekeep.sh        # Housekeeping script
