@@ -53,8 +53,10 @@ Install and Mount NFS
 - sudo mkdir -p /mnt/archive
 # Mount shared directories
 - sudo mount <NFS_SERVER_PRIVATE_IP>:/nfs/datacontrol /mnt/datacontrol
-- sudo mount <NFS_SERVER_PRIVATE_IP>:/nfs/archive /mnt/archive  ✅ Use ifconfig or AWS console to get the private IP of nfs-server.
+- sudo mount <NFS_SERVER_PRIVATE_IP>:/nfs/archive /mnt/archive
 ```
+✅ Use ifconfig or AWS console to get the private IP of nfs-server.
+
 5. Create the Housekeeping Script on client-serversudo nano /usr/local/bin/ftphousekeep.shPaste this:
 ```bash
 - #!/bin/bash
@@ -66,18 +68,18 @@ Install and Mount NFS
 ```bash
 - crontab -e
 ```
-Add this line:
+7. Add this line:
 ```bash
 - */5 * * * * /usr/local/bin/ftphousekeep.sh
 ```
 ✅ This runs the script every 5 minutes automatically.
 
-7. Test the SetupCreate a file for testing:
+8. Test the SetupCreate a file for testing:
 ```bash
 - touch /mnt/datacontrol/testfile.txt
 - touch -d "10 minutes ago" /mnt/datacontrol/testfile.txt
 ```
-Wait 5–6 minutes,
+9. Wait 5–6 minutes,
 then check:
 ```bash
 - ls /mnt/datacontrol
@@ -85,7 +87,7 @@ then check:
 - ls /mnt/archive
 - # Should now contain testfile.txt
 ```
-View log:
+10. View log:
 ```bash
 - tail -n 1 /var/log/ftphousekeep.log
 ```
