@@ -46,52 +46,55 @@ sudo systemctl restart nfs-kernel-server
 On client-server:
 Install and Mount NFS
 ```bash
-- sudo apt update
-- sudo apt install nfs-common -y
+sudo apt update
+sudo apt install nfs-common -y
 # Create mount points
-- sudo mkdir -p /mnt/datacontrol
-- sudo mkdir -p /mnt/archive
+sudo mkdir -p /mnt/datacontrol
+sudo mkdir -p /mnt/archive
 # Mount shared directories
-- sudo mount <NFS_SERVER_PRIVATE_IP>:/nfs/datacontrol /mnt/datacontrol
-- sudo mount <NFS_SERVER_PRIVATE_IP>:/nfs/archive /mnt/archive
+sudo mount <NFS_SERVER_PRIVATE_IP>:/nfs/datacontrol /mnt/datacontrol
+sudo mount <NFS_SERVER_PRIVATE_IP>:/nfs/archive /mnt/archive
 ```
 ✅ Use ifconfig or AWS console to get the private IP of nfs-server.
 
 5. Create the Housekeeping Script on client-serversudo nano /usr/local/bin/ftphousekeep.shPaste this:
 ```bash
-- #!/bin/bash
-- find /mnt/datacontrol -type f -mmin +5 -exec mv {} /mnt/archive/ \;
-- echo "$(date): Moved files older than 5 minutes to archive" >> /var/log/ftphousekeep.logThen:
-- sudo chmod +x /usr/local/bin/ftphousekeep.sh
+#!/bin/bash
+find /mnt/datacontrol -type f -mmin +5 -exec mv {} /mnt/archive/ \;
+echo "$(date): Moved files older than 5 minutes to archive" >> /var/log/ftphousekeep.logThen:
+sudo chmod +x /usr/local/bin/ftphousekeep.sh
 ```
 6. Schedule Script with Cron (Every 5 Minutes)
 ```bash
-- crontab -e
+crontab -e
 ```
 7. Add this line:
 ```bash
-- */5 * * * * /usr/local/bin/ftphousekeep.sh
+*/5 * * * * /usr/local/bin/ftphousekeep.sh
 ```
 ✅ This runs the script every 5 minutes automatically.
 
 8. Test the SetupCreate a file for testing:
 ```bash
-- touch /mnt/datacontrol/testfile.txt
-- touch -d "10 minutes ago" /mnt/datacontrol/testfile.txt
+touch /mnt/datacontrol/testfile.txt
+-touch -d "10 minutes ago" /mnt/datacontrol/testfile.txt
 ```
 9. Wait 5–6 minutes,
 then check:
 ```bash
-- ls /mnt/datacontrol
--  # Should not contain testfile.txt
-- ls /mnt/archive
-- # Should now contain testfile.txt
+ls /mnt/datacontrol
+# Should not contain testfile.txt
+ls /mnt/archive
+# Should now contain testfile.txt
 ```
 10. View log:
 ```bash
-- tail -n 1 /var/log/ftphousekeep.log
+tail -n 1 /var/log/ftphousekeep.log
 ```
 
 ✅ Shows the latest log entry.
 ✅ OutcomeThis simulation demonstrates how to offload system-intensive housekeeping from critical servers by using shared storage and remote automation — just like in production environments.
-👤 AuthorIrfan KhanDevOps & Cloud Engineer (Trained Fresher)GitHub: @irfankhan47
+👤 Author
+Irfan KhanDevOps & Cloud Engineer
+(Trained Fresher)
+GitHub: @irfankhan47
