@@ -77,7 +77,7 @@ crontab -e
 8. Test the SetupCreate a file for testing:
 ```bash
 touch /mnt/datacontrol/testfile.txt
--touch -d "10 minutes ago" /mnt/datacontrol/testfile.txt
+touch -d "10 minutes ago" /mnt/datacontrol/testfile.txt
 ```
 9. Wait 5–6 minutes,
 then check:
@@ -92,8 +92,8 @@ ls /mnt/archive
 tail -n 1 /var/log/ftphousekeep.log
 ```
 
-✅ Shows the latest log entry.
-✅ OutcomeThis simulation demonstrates how to offload system-intensive housekeeping from critical servers by using shared storage and remote automation — just like in production environments.
+✅ Shows the latest log entry.<br>
+✅ OutcomeThis simulation demonstrates how to offload system-intensive housekeeping from critical servers by using shared storage and remote automation — just like in production environments.<br>
 
 👤 Author<br>
 Irfan KhanDevOps & Cloud Engineer<br>
