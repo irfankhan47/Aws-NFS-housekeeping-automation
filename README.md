@@ -15,9 +15,12 @@ The script is scheduled using cron to run every 5 minutes.
 - Crontab for automation
 
 📦 Folder Structureproject-root/
-- ├── ftphousekeep.sh        # Housekeeping script
-- ├── setup-cron.md          # Cron job config example
-- └── README.md              # This file⚙️ Step-by-Step Setup1. Launch Two EC2 InstancesLaunch 2 Ubuntu 22.04 EC2 instances:
+- ├── ftphousekeep.sh         # Housekeeping script
+- ├── setup-cron.md           # Cron job config example
+- └── README.md               # This file⚙️
+
+Step-by-Step Setup
+1. Launch Two EC2 Instances Ubuntu 22.04 EC2 instances:
 
 One as the nfs-server
 One as the client-server
