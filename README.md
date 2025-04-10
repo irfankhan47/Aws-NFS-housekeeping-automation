@@ -1,4 +1,4 @@
-📁 NFS Housekeeping Automation using AWS EC2
+# 📁 NFS Housekeeping Automation using AWS EC2
 This project simulates a real-time DevOps scenario where old files are archived from a shared directory using a housekeeping script. The task mirrors a production environment where such scripts are offloaded to reduce CPU usage on critical servers.
 
 🧠 Scenario OverviewIn production, a file transfer server was experiencing high CPU load due to a housekeeping script that moved files older than 1 year. To avoid this performance hit, the solution was to run the script from a different server via NFS (Network File System), which accesses the shared data without directly using the file server's resources.
