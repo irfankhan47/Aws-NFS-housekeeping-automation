@@ -20,7 +20,7 @@ The script is scheduled using cron to run every 5 minutes.
 - └── README.md               # This file⚙️
 
 Step-by-Step Setup
-1. Launch Two EC2 Instances Ubuntu 22.04 EC2 instances:
+1. Launch Two EC2 Instances Ubuntu 22.04:
 
 - One as the nfs-server
 - One as the client-server
