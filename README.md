@@ -32,17 +32,20 @@ Step-by-Step Setup
 
 4. On nfs-server:
 Install and Configure NFS
+
+```bash
 - sudo apt update
 - sudo apt install nfs-kernel-server -y
-Create Shared Folders
+# Create Shared Folders
 - sudo mkdir -p /nfs/datacontrol
 - sudo mkdir -p /nfs/archive
 - sudo chmod -R 777 /nfs Export the Folders echo "/nfs *(rw,sync,no_subtree_check,no_root_squash)" | sudo tee -a /etc/exports
 - sudo exportfs -a
 - sudo systemctl restart nfs-kernel-server
-
-5. On client-server:
+```
+On client-server:
 Install and Mount NFS
+```bash
 - sudo apt update
 - sudo apt install nfs-common -y
 # Create mount points
@@ -51,29 +54,38 @@ Install and Mount NFS
 # Mount shared directories
 - sudo mount <NFS_SERVER_PRIVATE_IP>:/nfs/datacontrol /mnt/datacontrol
 - sudo mount <NFS_SERVER_PRIVATE_IP>:/nfs/archive /mnt/archive  ✅ Use ifconfig or AWS console to get the private IP of nfs-server.
-
+```
 5. Create the Housekeeping Script on client-serversudo nano /usr/local/bin/ftphousekeep.shPaste this:
+```bash
 - #!/bin/bash
 - find /mnt/datacontrol -type f -mmin +5 -exec mv {} /mnt/archive/ \;
 - echo "$(date): Moved files older than 5 minutes to archive" >> /var/log/ftphousekeep.logThen:
 - sudo chmod +x /usr/local/bin/ftphousekeep.sh
+```
 6. Schedule Script with Cron (Every 5 Minutes)
+```bash
 - crontab -e
 Add this line:
 - */5 * * * * /usr/local/bin/ftphousekeep.sh  ✅ This runs the script every 5 minutes automatically.
+```
 
 7. Test the SetupCreate a file for testing:
+```bash
 - touch /mnt/datacontrol/testfile.txt
 - touch -d "10 minutes ago" /mnt/datacontrol/testfile.txt
+```
 Wait 5–6 minutes,
 then check:
+```bash
 - ls /mnt/datacontrol
 -  # Should not contain testfile.txt
 - ls /mnt/archive
 - # Should now contain testfile.txt
-
+```
 View log:
+```bash
 - tail -n 1 /var/log/ftphousekeep.log
+```
 
 ✅ Shows the latest log entry.
 ✅ OutcomeThis simulation demonstrates how to offload system-intensive housekeeping from critical servers by using shared storage and remote automation — just like in production environments.
